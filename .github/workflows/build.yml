@@ -69,8 +69,7 @@ jobs:
       - run: sde -spr -mix -- make installcheck
       - if: ${{ failure() }}
         run: cat regression.diffs
-      - run: sde -spr -mix -- $pgdir/pg_ctl -D $pgdata stop
-      - run: cat sde*txt | grep -E "FMA.*PH"
+      - run: cat sde*.txt | grep -E "FMA.*PH"
   mac:
     runs-on: ${{ matrix.os }}
     if: ${{ !startsWith(github.ref_name, 'windows') }}
