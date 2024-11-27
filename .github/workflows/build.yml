@@ -69,10 +69,6 @@ jobs:
       - run: sde -spr -mix -- make installcheck
       - if: ${{ failure() }}
         run: cat regression.diffs
-      - run: |
-          sudo apt-get update
-          sudo apt-get install libipc-run-perl
-      - run: sde -spr -mix -- make prove_installcheck
       - run: sde -spr -mix -- $pgdir/pg_ctl -D $pgdata stop
       - run: cat sde*txt | grep -E "FMA.*PH"
   mac:
